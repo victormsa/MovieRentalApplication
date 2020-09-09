@@ -1,0 +1,71 @@
+﻿@model RentalWorkPlease.Models.Movie
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Movie</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MovieID" />
+            <div class="form-group">
+                <label asp-for="MovieName" class="control-label"></label>
+                <input asp-for="MovieName" class="form-control" />
+                <span asp-validation-for="MovieName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreationDate" class="control-label"></label>
+                <input asp-for="CreationDate" class="form-control" />
+                <span asp-validation-for="CreationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
+                </label>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <table>
+                        <tr>
+                            @{
+                                int cnt = 0;
+                                List<AssignedGenreData> genres = ViewBag.Genres;
+
+                                foreach (var genre in genres)
+                                {
+                                    if (cnt++ % 3 == 0)
+                                    {
+                                    @:</tr><tr>
+                                    }
+                                    @:<td>
+                                        <input type="checkbox"
+                                               name="selectedGenres"
+                                               value="@genre.GenreID"
+                                               @(Html.Raw(genre.Assigned ? "checked=\"checked\"" : "")) />
+                                        @genre.GenreID @:  @genre.GenreName
+                                    @:</td>
+                                }
+                            @:</tr>
+                            }
+                        </table>
+                        <div class="form-group">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
