@@ -38,5 +38,5 @@ Adicione filmes e atribua a eles um ou mais gêneros, em seguida teste a ediçã
 Adicione locações e atribua filmes, teste a edição e remoção. Se quiser, agora teste deletar gêneros, para observar o que acontece com o filmes cadastrados.
 Faça o mesmo com os filmes e observe o resultado nas locações.
 
-##Para implementar
+## Para implementar
 A aplicação foi toda feita utilizado EntityFramework, podendo ainda ser implementada uma forma de manipulação do banco de dados híbirda, usando Dapper e EntityFramework, com Dapper para leitura e EF para escrita.
