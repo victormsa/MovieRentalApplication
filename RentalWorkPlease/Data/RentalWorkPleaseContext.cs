@@ -7,6 +7,9 @@ using RentalWorkPlease.Models;
 
 namespace RentalWorkPlease.Data
 {
+    //Contexto de banco de dados criado para a implementação das tabelas no banco de dados, 
+    //esse contexto se refere somente a Movie, Genre, Rental e Tabelas Relacionais
+    //As migrações da base de dados dependem desse contexto
     public class RentalWorkPleaseContext : DbContext
     {
         public RentalWorkPleaseContext (DbContextOptions<RentalWorkPleaseContext> options)
@@ -28,7 +31,7 @@ namespace RentalWorkPlease.Data
             modelBuilder.Entity<Genre>().ToTable("Genre");
             modelBuilder.Entity<GenreAssign>().ToTable("GenreAssign");
             modelBuilder.Entity<MovieAssign>().ToTable("MovieAssign");
-
+            //Oveeride do método de criação do modelo para relacionar as chaves nas tabelas de relacionamento n para n
             modelBuilder.Entity<GenreAssign>()
                 .HasKey(c => new { c.GenreID, c.MovieID });
             modelBuilder.Entity<MovieAssign>()
