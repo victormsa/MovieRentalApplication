@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace RentalWorkPlease.Models
 {
+    //Classe POCO para criação em code first da tabela de relacionamentos n para n de Genre e Movie
+    //MovieAssign é implementado da mesma forma que este
     public class GenreAssign
     {
         public int MovieID { get; set; }

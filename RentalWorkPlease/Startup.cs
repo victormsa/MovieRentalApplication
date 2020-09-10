@@ -26,7 +26,7 @@ namespace RentalWorkPlease
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
+            //Necessário para definir servidor SQL e conexão com banco de dados
             services.AddDbContext<RentalWorkPleaseContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("RentalWorkPleaseContext")));
             //Adicionando o suporte a razorpages para usar alguns scaffolds

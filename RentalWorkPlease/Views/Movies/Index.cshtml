@@ -1,9 +1,7 @@
 ﻿@model RentalWorkPlease.Models.MovieIndexData
 
-@{
-    ViewData["Title"] = "Index";
-}
-
+@{ ViewData["Title"] = "Index"; }
+@*As implementações de Index, Create e Edit de todas as páginas são semelhantes*@
 <h1>Index</h1>
 
 <p>
@@ -14,7 +12,7 @@
         <thead>
             <tr>
                 <th>
-                    
+
                 </th>
                 <th>
                     Movie
@@ -39,38 +37,34 @@
                 {
                     selectedRow = "success";
                 }
-                <tr class="@selectedRow">
-                    <td>
-                        <input type="checkbox" name="ids"
-                                               value="@item.MovieID" />
-                                               
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MovieName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CreationDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Active)
-                    </td>
-                    <td>
-                        @{
-                            foreach (var genre in item.GenreAssigns)
-                            {
-                                @genre.Genre.GenreName <br />
-                            }
-                        }
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.MovieID">Edit</a> 
-                    </td>
-                </tr>
-            }
+<tr class="@selectedRow">
+    <td>
+        <input type="checkbox" name="ids"
+               value="@item.MovieID" />  @*Adiciona checkboxes diretamente relacionadas*@
+            @*ao MovieID e passadas para o método POST de Index no MoviesController*@
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MovieName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Active)
+        </td>
+        <td>
+            @{ foreach (var genre in item.GenreAssigns)
+                                {
+                @genre.Genre.GenreName <br /> @*Exibe a lista de Genres associados a cada Movie por meio de GenreAssigns*@ } }
+        </td>
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.MovieID">Edit</a>
+        </td>
+    </tr>            }
         </tbody>
     </table>
     <div>
-        <input type="submit" value="Delete" class="btn btn-sm btn-danger rounded-0" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o"></i>
+        <input type="submit" value="Delete" class="btn btn-sm btn-danger rounded-0" onclick="return confirm('Delete?')"><i class="fa fa-trash-o"></i>
     </div>
 </form>
 
