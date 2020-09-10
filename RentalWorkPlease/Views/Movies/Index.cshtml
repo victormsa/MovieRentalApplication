@@ -9,56 +9,85 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Movie
-            </th>
-            <th>
-                Creation Date
-            </th>
-            <th>
-                Active
-            </th>
-            <th>
-                Genre
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Movies)
-        {
-            string selectedRow = "";
-            if (item.MovieID == (int?)ViewData["MovieID"])
+<form asp-action="Index" asp-controller="movies" method="post">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    
+                </th>
+                <th>
+                    Movie
+                </th>
+                <th>
+                    Creation Date
+                </th>
+                <th>
+                    Active
+                </th>
+                <th>
+                    Genre
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Movies)
             {
-                selectedRow = "success";
-            }
-        <tr class="@selectedRow">
-            <td>
-                @Html.DisplayFor(modelItem => item.MovieName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Active)
-            </td>
-            <td>
-                @{
-                    foreach (var genre in item.GenreAssigns)
-                    {
-                         @genre.Genre.GenreName <br />
-                    }
+                string selectedRow = "";
+                if (item.MovieID == (int?)ViewData["MovieID"])
+                {
+                    selectedRow = "success";
                 }
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.MovieID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MovieID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MovieID">Delete</a>
-            </td>
-        </tr>
+                <tr class="@selectedRow">
+                    <td>
+                        <input type="checkbox" name="ids"
+                                               value="@item.MovieID" />
+                                               
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MovieName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreationDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Active)
+                    </td>
+                    <td>
+                        @{
+                            foreach (var genre in item.GenreAssigns)
+                            {
+                                @genre.Genre.GenreName <br />
+                            }
+                        }
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.MovieID">Edit</a> 
+                    </td>
+                </tr>
             }
         </tbody>
-</table>
+    </table>
+    <div>
+        <input type="submit" value="Delete" class="btn btn-sm btn-danger rounded-0" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o"></i>
+    </div>
+</form>
+
+@*@section scripts{
+    <script>
+        $(function (){
+            //Seleciona todas as checkboxes
+            $("selectAll").click(function () {
+                $("input[type = checkbox]").prop('checked', $(this).prop('checked'));
+            });
+            //Desfaz a seleção de checkboxes ao deselecionar select All
+            $("input[type=checkbox]").click(function () {
+                if (!$(this).prop("checked")) {
+                    $("selectAll").prop('checked', false);
+                }
+            });
+        })
+
+    </script>
+    }*@

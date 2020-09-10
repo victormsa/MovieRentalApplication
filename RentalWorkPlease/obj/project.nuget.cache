@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Kw+ZuS3U+tlVoteBw8XrdyxK2JDa1o0ZOswECro7UMtyoQH7k/nOAR7snw4HCfu0CA+OoU9MkyZM24jBXETpFw==",
+  "dgSpecHash": "T50FkcFB+3lwDZ8ytTsP/SDgygsBrUPN1RCgb+QJ3rjgWakvGY9Rpr4OEsOrVRK2twzNpqrZsLHAZA7GatjN1w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Victor\\source\\repos\\RentalWorkPlease\\RentalWorkPlease.csproj",
+  "projectFilePath": "C:\\Users\\Victor\\Documents\\GitHub\\MovieRentalApplication\\RentalWorkPlease\\RentalWorkPlease.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Victor\\.nuget\\packages\\dapper\\2.0.35\\dapper.2.0.35.nupkg.sha512",
     "C:\\Users\\Victor\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\Victor\\.nuget\\packages\\microsoft.aspnet.identity.core\\2.2.3\\microsoft.aspnet.identity.core.2.2.3.nupkg.sha512",
     "C:\\Users\\Victor\\.nuget\\packages\\microsoft.aspnet.identity.entityframework\\2.2.3\\microsoft.aspnet.identity.entityframework.2.2.3.nupkg.sha512",
@@ -145,7 +146,7 @@
     "C:\\Users\\Victor\\.nuget\\packages\\system.reflection\\4.3.0\\system.reflection.4.3.0.nupkg.sha512",
     "C:\\Users\\Victor\\.nuget\\packages\\system.reflection.emit\\4.3.0\\system.reflection.emit.4.3.0.nupkg.sha512",
     "C:\\Users\\Victor\\.nuget\\packages\\system.reflection.emit.ilgeneration\\4.3.0\\system.reflection.emit.ilgeneration.4.3.0.nupkg.sha512",
-    "C:\\Users\\Victor\\.nuget\\packages\\system.reflection.emit.lightweight\\4.3.0\\system.reflection.emit.lightweight.4.3.0.nupkg.sha512",
+    "C:\\Users\\Victor\\.nuget\\packages\\system.reflection.emit.lightweight\\4.7.0\\system.reflection.emit.lightweight.4.7.0.nupkg.sha512",
     "C:\\Users\\Victor\\.nuget\\packages\\system.reflection.extensions\\4.3.0\\system.reflection.extensions.4.3.0.nupkg.sha512",
     "C:\\Users\\Victor\\.nuget\\packages\\system.reflection.metadata\\1.6.0\\system.reflection.metadata.1.6.0.nupkg.sha512",
     "C:\\Users\\Victor\\.nuget\\packages\\system.reflection.primitives\\4.3.0\\system.reflection.primitives.4.3.0.nupkg.sha512",

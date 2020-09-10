@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Victor\\source\\repos\\RentalWorkPlease\\RentalWorkPlease.csproj": {}
+    "C:\\Users\\Victor\\Documents\\GitHub\\MovieRentalApplication\\RentalWorkPlease\\RentalWorkPlease.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Victor\\source\\repos\\RentalWorkPlease\\RentalWorkPlease.csproj": {
+    "C:\\Users\\Victor\\Documents\\GitHub\\MovieRentalApplication\\RentalWorkPlease\\RentalWorkPlease.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Victor\\source\\repos\\RentalWorkPlease\\RentalWorkPlease.csproj",
+        "projectUniqueName": "C:\\Users\\Victor\\Documents\\GitHub\\MovieRentalApplication\\RentalWorkPlease\\RentalWorkPlease.csproj",
         "projectName": "RentalWorkPlease",
-        "projectPath": "C:\\Users\\Victor\\source\\repos\\RentalWorkPlease\\RentalWorkPlease.csproj",
+        "projectPath": "C:\\Users\\Victor\\Documents\\GitHub\\MovieRentalApplication\\RentalWorkPlease\\RentalWorkPlease.csproj",
         "packagesPath": "C:\\Users\\Victor\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Victor\\source\\repos\\RentalWorkPlease\\obj\\",
+        "outputPath": "C:\\Users\\Victor\\Documents\\GitHub\\MovieRentalApplication\\RentalWorkPlease\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Victor\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -38,6 +38,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.35, )"
+            },
             "EntityFramework": {
               "target": "Package",
               "version": "[6.4.4, )"
