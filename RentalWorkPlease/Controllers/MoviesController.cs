@@ -25,8 +25,7 @@ namespace RentalWorkPlease.Controllers
 
         // GET: Movies
         public async Task<IActionResult> Index(int? id, int? GenreId)
-        {
-            List<MovieIndexData> MData = new List<MovieIndexData>();
+        {//Carregamento adiantado de Genre
             var viewModel = new MovieIndexData();
             viewModel.Movies = await _context.Movies
                   .Include(i => i.GenreAssigns)
@@ -46,24 +45,25 @@ namespace RentalWorkPlease.Controllers
 
         //POST: Movies
         [HttpPost]
-        public ActionResult Index(string[] ids)
+        public ActionResult Index(string[] ids) //Recebe a lista de MovieID selecionado pela checkboxes
         {
-            if (ids == null || ids.Length == 0)
+            if (ids == null || ids.Length == 0)//Caso de seleção vazia ou nenhum filme na exibição e tentativa de deletar
             {
                 ModelState.AddModelError("", "No items to delete");
                 return View();
             }
-            List<int> TaskIds = ids.Select(x => Int32.Parse(x)).ToList();
+            List<int> TaskIds = ids.Select(x => Int32.Parse(x)).ToList();//MovieIDs para int
             for(int i = 0; i < TaskIds.Count(); i++)
             {
-                var SelectedMovie = _context.Movies.Find(TaskIds[i]);
-                _context.Movies.Remove(SelectedMovie);
+                var SelectedMovie = _context.Movies.Find(TaskIds[i]);//Encontra a referência aos Movies Selecionados para deletar
+                _context.Movies.Remove(SelectedMovie);//Deleta 1 a 1 os itens da lista, poderia ser com feito com RemoveRange(), mas não estou com tempo para testar
                 _context.SaveChanges();
             }
             return RedirectToAction("Index");
         }
 
         // GET: Movies/Details/5
+        //Details não está sendo usado
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -86,7 +86,7 @@ namespace RentalWorkPlease.Controllers
         {
             var movie = new Movie();
             movie.GenreAssigns = new List<GenreAssign>();
-            PopulateAssignedGenreData(movie);
+            PopulateAssignedGenreData(movie); //Lista todos os Genres cadastrados 
             return View();
         }
 
