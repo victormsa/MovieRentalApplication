@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -25,8 +26,9 @@ namespace RentalWorkPlease.Controllers
         // GET: Movies
         public async Task<IActionResult> Index(int? id, int? GenreId)
         {
+            List<MovieIndexData> MData = new List<MovieIndexData>();
             var viewModel = new MovieIndexData();
-            viewModel.Movies = await _context.Movies                
+            viewModel.Movies = await _context.Movies
                   .Include(i => i.GenreAssigns)
                     .ThenInclude(i => i.Genre)
                   .AsNoTracking()
@@ -40,6 +42,25 @@ namespace RentalWorkPlease.Controllers
                 viewModel.Genres = movie.GenreAssigns.Select(s => s.Genre);
             }
             return View(viewModel);
+        }
+
+        //POST: Movies
+        [HttpPost]
+        public ActionResult Index(string[] ids)
+        {
+            if (ids == null || ids.Length == 0)
+            {
+                ModelState.AddModelError("", "No items to delete");
+                return View();
+            }
+            List<int> TaskIds = ids.Select(x => Int32.Parse(x)).ToList();
+            for(int i = 0; i < TaskIds.Count(); i++)
+            {
+                var SelectedMovie = _context.Movies.Find(TaskIds[i]);
+                _context.Movies.Remove(SelectedMovie);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Index");
         }
 
         // GET: Movies/Details/5
@@ -155,7 +176,7 @@ namespace RentalWorkPlease.Controllers
                 "",
                 i => i.MovieName, i => i.CreationDate, i => i.Active))
             {
-                
+
                 UpdateMovieGenres(selectedGenres, movieToUpdate);
                 try
                 {
@@ -238,7 +259,8 @@ namespace RentalWorkPlease.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
+        [HttpPost, ActionName("DeleteMovies")]
+       
         private bool MovieExists(int id)
         {
             return _context.Movies.Any(e => e.MovieID == id);

@@ -23,6 +23,5 @@ namespace RentalWorkPlease.Models
             set;
    
         }
-
     }
 }

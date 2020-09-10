@@ -25,7 +25,34 @@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
-        </form>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <table>
+                        <tr>
+                            @{
+                                int cnt = 0;
+                                List<AssignedMovieData> movies = ViewBag.Movies;
+
+                                foreach (var movie in movies)
+                                {
+                                    if (cnt++ % 3 == 0)
+                                    {
+                                    @:</tr><tr>
+                                    }
+                                    @:<td>
+                                        <input type="checkbox"
+                                               name="selectedMovies"
+                                               value="@movie.MovieID"
+                                               @(Html.Raw(movie.Assigned ? "checked=\"checked\"" : "")) />
+                                        @movie.MovieID @:  @movie.MovieName
+                                    @:</td>
+                                }
+                            @:</tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </form>
     </div>
 </div>
 

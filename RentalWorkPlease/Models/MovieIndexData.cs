@@ -1,4 +1,5 @@
-﻿using RentalWorkPlease.Models;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using RentalWorkPlease.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ namespace RentalWorkPlease.Models
 {
     public class MovieIndexData
     {
+
         public IEnumerable<Movie> Movies { get; set; }
         public IEnumerable<Genre> Genres { get; set; }
 

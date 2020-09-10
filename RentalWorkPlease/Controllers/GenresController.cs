@@ -26,6 +26,23 @@ namespace RentalWorkPlease.Controllers
         {
             return View(await _context.Genres.ToListAsync());
         }
+        [HttpPost]
+        public ActionResult Index(string[] ids)
+        {
+            if (ids == null || ids.Length == 0)
+            {
+                ModelState.AddModelError("", "No items to delete");
+                return View();
+            }
+            List<int> TaskIds = ids.Select(x => Int32.Parse(x)).ToList();
+            for (int i = 0; i < TaskIds.Count(); i++)
+            {
+                var SelectedGenre = _context.Genres.Find(TaskIds[i]);
+                _context.Genres.Remove(SelectedGenre);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
 
         // GET: Genres/Details/5
         public async Task<IActionResult> Details(int? id)

@@ -64,6 +64,9 @@ namespace RentalWorkPlease.Controllers
         // GET: Rentals/Create
         public IActionResult Create()
         {
+            var rental = new Rental();
+            rental.MovieAssigns = new List<MovieAssign>();
+            PopulateAssignedMovieData(rental);
             return View();
         }
 
@@ -72,14 +75,24 @@ namespace RentalWorkPlease.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RentalID,Cpf,RentalDate")] Rental rental)
+        public async Task<IActionResult> Create([Bind("RentalID,Cpf,RentalDate")] Rental rental, string[] selectedMovies)
         {
+            if (selectedMovies != null)
+            {
+                rental.MovieAssigns = new List<MovieAssign>();
+                foreach (var movie in selectedMovies)
+                {
+                    var movieToAdd = new MovieAssign { RentalID = rental.RentalID, MovieID = int.Parse(movie) };
+                    rental.MovieAssigns.Add(movieToAdd);
+                }
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(rental);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            PopulateAssignedMovieData(rental);
             return View(rental);
         }
 
